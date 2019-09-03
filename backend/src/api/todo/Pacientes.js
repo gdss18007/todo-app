@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+const restful = require('node-restful')
+const mongoose = restful.mongoose
+
 const Pacientes = new mongoose.Schema({
     CPf:{
         type: String,
@@ -38,11 +40,13 @@ const Pacientes = new mongoose.Schema({
     },
     cadastroOnLine:{
         type:Boolean,
+        required:false,
         default:false
     },
     createdAt:{
         type:Date,
+        required:false,
         default:Date.now
     },
 });
-mongoose.model('paciente',Pacientes);
+module.exports = restful.model('paciente',Pacientes)

@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+const restful = require('node-restful')
+const mongoose = restful.mongoose
+
 const Consultas = new mongoose.Schema({
     id:{
         type: String,
@@ -25,4 +27,4 @@ const Consultas = new mongoose.Schema({
         default:Date.now
     }
 });
-mongoose.model('consulta',Consultas);
+module.exports = restful.model('consulta',Consultas);

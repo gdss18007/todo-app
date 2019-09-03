@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+const restful = require('node-restful')
+const mongoose = restful.mongoose
+
 const Horarios = new mongoose.Schema({
     id:{
         type: String,
@@ -13,4 +15,4 @@ const Horarios = new mongoose.Schema({
         default:Date.now
     }
 });
-mongoose.model('horarios',Horarios);
+module.exports = restful.model('horarios',Horarios);

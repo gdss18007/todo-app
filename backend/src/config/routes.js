@@ -3,8 +3,10 @@ module.exports = function(server){
     const router = express.Router();
     server.use('/api',router)
 
-    const todoService = require('../api/todo/webSevice')
+    const todoService = require('../api/todo/webService')
+    const pacienteService = require('../controller/ControllerPacientes')
     todoService.register(router,'/todo')
+    pacienteService.register(router,'/paciente')
 }
 
 // const MedicoController =  require('../controller/MedicosController');

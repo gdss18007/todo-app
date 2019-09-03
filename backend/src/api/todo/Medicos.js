@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+const restful = require('node-restful')
+const mongoose = restful.mongoose
+
 const Medicos = new mongoose.Schema({
     CRM:{
         type: String,
@@ -45,4 +47,4 @@ const Medicos = new mongoose.Schema({
         default:Date.now
     }
 });
-mongoose.model('medico',Medicos);
+module.exports = restful.model('medico',Medicos)

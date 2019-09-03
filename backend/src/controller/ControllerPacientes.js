@@ -1,10 +1,6 @@
-const mongoose = require('mongoose');
+const paciente = require('../api/todo/Pacientes')
 
-const Paciente = mongoose.model('paciente');
+paciente.methods(['get','post','put','delete'])
+paciente.updateOptions({new: true, runValiators:true})
 
-module.exports = {
-    async index(req,res){
-        const pacientes = await Paciente.find();
-        return res.json(pacientes);
-    }
-};
+module.exports = paciente
