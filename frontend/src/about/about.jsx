@@ -1,6 +1,7 @@
 import React from 'react'
+import Header from '../template/header'
 export default props =>(
     <div>
-        <h1>Sobre</h1>
+        <Header name='Sobre' small='nós'></Header>
     </div>
 )
