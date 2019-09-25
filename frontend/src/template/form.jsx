@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '../template/grid'
+import Grid from './grid'
 export default props => (
     <div role='form' className='form'>
         <Grid cols={props.col}>

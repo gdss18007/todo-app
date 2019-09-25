@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import If from '../template/if'
 
 import Header from '../template/header'
-import List from './list'
 import FormCadastro from './formulario_cadastro'
 const URL = 'http://localhost:3003/api'
-export default class Todo extends Component{
+export default class Cadastro extends Component{
     constructor(props){
         super(props)
-        this.state =  {cpf:'',nome:'',telefone:'',list:[]}
+        this.state =  {cpf:'02320963251',nome:'',search:true,senha:'',list:[]}
         this.handleChange=this.handleChange.bind(this)
         this.handleAdd=this.handleAdd.bind(this)
     }
@@ -23,28 +23,37 @@ export default class Todo extends Component{
                 this.setState({...this.state,nome: e.target.value})
                 console.log(this.state.nome)
                 break
-            case "telefone":
+            case "senha":
                 this.setState({...this.state,telefone: e.target.value})
                 console.log(this.telefone)
+                break
+            case "senhaConf":
+                this.setState({...this.state,telefone: e.target.value})
+                console.log(this.telefone)
+                break
         }
     }
     handleAdd(){
         const cpf = this.state.cpf
         const nome = this.state.nome
-        const telefone = this.state.telefone
-        axios.post(URL+'/paciente',{CPf:cpf,Nome:nome,telefone:telefone}).then(console.log('funciona!'+URL+'/paciente'))
+        const senha = this.state.senha
+        axios.put(URL+'/paciente?CPf='+this.state.cpf,{senha:senha}).then(console.log('funciona!'+URL+'/paciente'))
         .catch(error => { console.log(error.response) })
     }
     render(){
         return(
             <div>
                 <Header name='Agendamento online' small='Cadastro'/>
+                <If test={this.state.search}>
+                    {axios.get(URL+'/paciente?CPf='+this.state.cpf).then(response => this.setState({...this.state,nome: response.data.Nome}))
+                    .catch(error => { console.log("não encontrado")
+                    this.state.search=true })}
+                </If>
                 <FormCadastro
                 state={this.state}
                 onChange={this.handleChange}
                 onClick={this.handleAdd}/>
                 <br/>
-                <List/>
             </div>
             )
     }
