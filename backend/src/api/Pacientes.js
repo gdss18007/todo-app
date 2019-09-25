@@ -20,15 +20,15 @@ const Pacientes = new mongoose.Schema({
     },
     bairro:{
         type: String,
-        required:true
+        required:false
     },
     num_res:{
         type:String,
-        required:true
+        required:false
     },
     e_mail:{
         type:String,
-        required:true
+        required:false
     },
     sexo:{
         type: String,
