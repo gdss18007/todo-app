@@ -9,6 +9,6 @@ export default props =>(
         <Route path='/cadastro' component={Cadastro}/>
         <Route path='/checkCpf' component={Check}/>
         <Route path='/about' component={About}/>
-        <Redirect from='*' to='cadastro'/>
+        <Redirect from='*' to='checkCpf'/>
     </Router>
 )

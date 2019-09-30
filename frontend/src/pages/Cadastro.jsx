@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import If from '../template/if'
 
 import Header from '../template/header'
 import FormCadastro from './formulario_cadastro'
@@ -8,7 +7,7 @@ const URL = 'http://localhost:3003/api'
 export default class Cadastro extends Component{
     constructor(props){
         super(props)
-        this.state =  {cpf:'02320963251',nome:'',search:true,senha:'',list:[]}
+        this.state = 
         this.handleChange=this.handleChange.bind(this)
         this.handleAdd=this.handleAdd.bind(this)
     }
@@ -44,11 +43,6 @@ export default class Cadastro extends Component{
         return(
             <div>
                 <Header name='Agendamento online' small='Cadastro'/>
-                <If test={this.state.search}>
-                    {axios.get(URL+'/paciente?CPf='+this.state.cpf).then(response => this.setState({...this.state,nome: response.data.Nome}))
-                    .catch(error => { console.log("não encontrado")
-                    this.state.search=true })}
-                </If>
                 <FormCadastro
                 state={this.state}
                 onChange={this.handleChange}

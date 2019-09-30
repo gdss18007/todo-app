@@ -19,7 +19,9 @@ export default class Cadastro extends Component{
         console.log(this.state.cpf)
     }
     handleAdd(){
-        axios.get(URL+'/paciente?CPf='+this.state.cpf).then(response => window.location='#/cadastro')
+        axios.get(URL+'/paciente?CPf='+this.state.cpf).then(response => {
+            history.pushState(this.state,'checkCPF','#/checkCpf')
+            window.location='#/cadastro'})
         .catch(error => { console.log("não encontrado") })
     }
     render(){
