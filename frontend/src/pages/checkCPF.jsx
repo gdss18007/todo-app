@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import axios from 'axios'
-import {changeCpf} from './actions'
+import {changeCpf,CheckCPF} from './actions'
 import Header from '../template/header'
 const URL = 'http://localhost:3003/api'
 class CheckCpf extends Component{
@@ -16,7 +16,8 @@ class CheckCpf extends Component{
     }
     handleAdd(){
         axios.get(URL+'/paciente?CPf='+this.props.paciente.cpf).then(response => {
-            this.setState({...this.props.paciente,cpf:response.data[0]['CPf'],nome:response.data[0]['Nome']})
+            console.log(response.data[0]['CPf']+"\n"+response.data[0]['Nome'])
+            this.setState({...this.props.paciente.state,cpf:response.data[0]['CPf'],nome:response.data[0]['Nome']})
             window.location='#/cadastro'})
         .catch(error => { console.log(response.error) })
     }
@@ -31,7 +32,7 @@ class CheckCpf extends Component{
                     placeholder='CPF ...'
                     change={this.props.changeCpf}/>
                 <Grid cols='6 3'>
-                    <Icon style='primary' icon='plus' hide={true} onClick={this.handleAdd}></Icon>
+                    <Icon style='primary' icon='plus' hide={true} onClick={()=>this.props.CheckCPF(this.props.paciente.cpf)} ></Icon>
                 </Grid>
             </div>
             )
@@ -40,5 +41,5 @@ class CheckCpf extends Component{
 const mapStateToProps = state =>({
     paciente:state.paciente
 })
-const mapDispatchToProps = dispatch => bindActionCreators({changeCpf},dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({changeCpf,CheckCPF},dispatch)
 export default connect(mapStateToProps,mapDispatchToProps)(CheckCpf)
