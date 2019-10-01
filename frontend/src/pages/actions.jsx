@@ -9,7 +9,22 @@ export const CheckCPF = (cpf) => {
     .catch(error => { console.log('não encontrou') })
     return{
         type:'check_CPF',
-        payload: request,
-        Cpf:cpf
+        payload: request
     }
 }
+export const addPaciente = (paciente) => {
+    console.log(paciente)
+    console.log('funciona!'+URL+'/paciente')
+    axios.put(URL+'/paciente/'+paciente._id,{CPf:paciente.cpf,Nome:paciente.nome,senha:paciente.senha,telefone:'',cadastroOnLine:true})
+    return{
+        type:'add_paciente'
+    }
+}
+export const checkSenha = e => ({
+    type: 'senha_digitada',
+    payload:e.target.value
+})
+export const checkSenhaConf = e => ({
+    type: 'senhaConf_digitada',
+    payload:e.target
+})
