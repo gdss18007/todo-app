@@ -7,9 +7,9 @@ export const changeCpf = e => ({
 export const CheckCPF = (cpf) => {
     const request = axios.get(URL+'/paciente?CPf='+cpf).then(response => response.data[0])
     .catch(error => { console.log('não encontrou') })
-    request.data
     return{
         type:'check_CPF',
-        payload: request
+        payload: request,
+        Cpf:cpf
     }
 }

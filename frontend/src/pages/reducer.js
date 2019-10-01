@@ -7,7 +7,11 @@ export default (state = INITIAL_STATE,action)=>{
             console.log(state.cpf)
             return {...state,cpf: action.payload}
         case 'check_CPF':
-            return ({...state,cpf: action.payload['CPf'],nome:action.payload['Nome']})
+            if(action.payload['CPf']==action.CPf){
+                window.location = '#/cadastro'
+                console.log('tá mudando state')
+                return {...state,cpf: action.payload['CPf'],nome:action.payload['Nome']}
+        }
         default:
             return state
     }
