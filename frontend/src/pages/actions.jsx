@@ -12,6 +12,14 @@ export const CheckCPF = (cpf) => {
         payload: request
     }
 }
+export const autenticar = (cpf) => {
+    const request = axios.get(URL+'/paciente?CPf='+cpf).then(response => response.data[0])
+    .catch(error => { console.log('não encontrou') })
+    return{
+        type:'autenticar',
+        payload: request
+    }
+}
 export const addPaciente = (paciente) => {
     console.log(paciente)
     console.log('funciona!'+URL+'/paciente')

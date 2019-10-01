@@ -8,6 +8,22 @@ export default (state = INITIAL_STATE,action)=>{
         case 'cpf_digitado':
             console.log(state.cpf)
             return {...state,cpf: action.payload}
+            case 'autenticar':
+                if(action.payload['CPf']==state.cpf){
+                    if(action.payload['cadastroOnLine']){
+                        if(action.payload['senha']==state.senha){
+                        alert('Entrou')
+                        }
+                        else{
+                        alert('Senha incorreta')
+                        }
+                    }else{
+                        alert('CPF não cadastrado no sistema de agendamento online\nfaça o cadastro na guia cadastro')    
+                    }
+                }else{
+                    alert('CPF não cadastrado na clinica')
+                }
+            return {...state,cpf: action.payload}
         case 'check_CPF':
             if(action.payload['CPf']==state.cpf){
                 if(!action.payload['cadastroOnLine']){

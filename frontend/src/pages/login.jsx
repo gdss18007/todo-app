@@ -5,13 +5,13 @@ import Form from '../template/form'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
-import {changeCpf,CheckCPF} from './actions'
+import {changeCpf,checkSenha,autenticar} from './actions'
 import Header from '../template/header'
 class Login extends Component{
     render(){
         return(
             <div>
-                <Header name='Agendamento online' small='Cadastro'/>
+                <Header name='Agendamento online' small='Login'/>
                 <Form value={this.props.paciente.cpf}
                     id='CPF'
                     tipo='text'
@@ -23,9 +23,9 @@ class Login extends Component{
                     tipo='password'
                     col = '6 3'
                     placeholder='senha...'
-                    change={this.props.changeCpf}/>
+                    change={this.props.checkSenha}/>
                 <Grid cols='6 3'>
-                    <Icon style='primary' icon='plus' hide={true} onClick={()=>this.props.CheckCPF(this.props.paciente.cpf)} ></Icon>
+                    <Icon style='primary' icon='plus' hide={true} onClick={()=>this.props.autenticar(this.props.paciente.cpf)} ></Icon>
                 </Grid>
             </div>
             )
@@ -34,5 +34,5 @@ class Login extends Component{
 const mapStateToProps = state =>({
     paciente:state.paciente
 })
-const mapDispatchToProps = dispatch => bindActionCreators({changeCpf,CheckCPF},dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({changeCpf,checkSenha,autenticar},dispatch)
 export default connect(mapStateToProps,mapDispatchToProps)(Login)
